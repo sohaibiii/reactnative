@@ -6,8 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
-  Dimensions
+  Image
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -20,9 +19,6 @@ import {
   addWeightValue,
   removeZeroDecimal
 } from "../helpers/index";
-const width = Dimensions.get("screen").width;
-const height = Dimensions.get("screen").height;
-console.log(width);
 
 class FromItem extends React.PureComponent {
   static propTypes = {
@@ -77,6 +73,7 @@ class Target extends React.Component {
       else {
         const num = removeZeroDecimal(String(value.number));
         this.props.weight ? addWeightValue(num) : addTargetValue(num);
+        this.props.weight ? this.props.renderWeights() : "";
         this.props.weight ? "" : this.props.press();
       }
     });

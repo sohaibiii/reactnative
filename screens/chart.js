@@ -8,7 +8,8 @@ import {
   Image,
   AsyncStorage,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableWithoutFeedback
 } from "react-native";
 import _ from "lodash";
 import {
@@ -21,7 +22,7 @@ export default class Chart extends Component {
   state = {
     value: null,
     language: null,
-    Weights: null
+    Weights: false
   };
 
   componentDidMount() {
@@ -32,7 +33,6 @@ export default class Chart extends Component {
     try {
       const res = await AsyncStorage.getItem("weights");
       const response = JSON.parse(res);
-      console.log("required thing is ****", response);
 
       this.setState({
         Weights: [...response]
@@ -151,10 +151,27 @@ export default class Chart extends Component {
   };
 
   render() {
-    if (!this.state.Weights) {
+    if (this.state.Weights === false) {
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#00B0FF" />
+        </View>
+      );
+    } else if (this.state.Weights === null) {
+      return (
+        <View style={[styles.container, {alignItems: "center"}]}>
+          <Text>you don't have any history</Text>
+          <TouchableWithoutFeedback
+            style={{
+              height: hp("5%"),
+              width: wp("15%"),
+              borderColor: "gray",
+              borderWidth: 1
+            }}
+            onPress={() => this.props.press()}
+          >
+            <Text>back</Text>
+          </TouchableWithoutFeedback>
         </View>
       );
     } else {

@@ -19,7 +19,7 @@ import Target from "./target";
 class Weight extends Component {
   state = {
     text: "",
-    Weights: null
+    Weights: false
   };
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class Weight extends Component {
     try {
       const res = await AsyncStorage.getItem("weights");
       const response = JSON.parse(res);
-      console.log("required thing is ****", response);
+      typeof response === null ? this.setState({Weights: null}) : "";
 
       this.setState({
         Weights: [...response]
@@ -43,6 +43,35 @@ class Weight extends Component {
 
   addWeight = () => {
     addWeightValue(this.state.text);
+  };
+
+  renderHistory = () => {
+    switch (this.state.Weights) {
+      case false:
+        return (
+          <View>
+            <ActivityIndicator size="large" color="#00B0FF" />
+          </View>
+        );
+      case null:
+        return <Text>you don't have any weights </Text>;
+      default:
+        return this.state.Weights.reverse().map((obj, index) => {
+          return (
+            <View
+              style={styles.historyStyle}
+              key={obj.date + obj.value + index}
+            >
+              <Text style={styles.linkOneStyle}>
+                {moment(`${obj.date}`, "YYYY-MM-DDTHH:mm:ss.SSS").format(
+                  " YYYY-MM-DD hh:mm A"
+                )}
+              </Text>
+              <Text style={styles.linkTwoStyle}>{obj.value}</Text>
+            </View>
+          );
+        });
+    }
   };
   render() {
     return (
@@ -62,32 +91,14 @@ class Weight extends Component {
           <Text style={styles.buttonTextStyle}> BACK </Text>
         </TouchableOpacity>
 
-        <Target weight={true} style={{marginTop: 10}} />
+        <Target
+          weight={true}
+          style={{marginTop: 10}}
+          renderWeights={() => this.renderWeights()}
+        />
 
         <View style={styles.frameStyle}>
-          <ScrollView>
-            {this.state.Weights !== null ? (
-              this.state.Weights.reverse().map((obj, index) => {
-                return (
-                  <View
-                    style={styles.historyStyle}
-                    key={obj.date + obj.value + index}
-                  >
-                    <Text style={styles.linkOneStyle}>
-                      {moment(`${obj.date}`, "YYYY-MM-DDTHH:mm:ss.SSS").format(
-                        " YYYY-MM-DD hh:mm A"
-                      )}
-                    </Text>
-                    <Text style={styles.linkTwoStyle}>{obj.value}</Text>
-                  </View>
-                );
-              })
-            ) : (
-              <View>
-                <ActivityIndicator size="large" color="#00B0FF" />
-              </View>
-            )}
-          </ScrollView>
+          <ScrollView>{this.renderHistory()}</ScrollView>
         </View>
 
         <TouchableOpacity
