@@ -11,6 +11,10 @@ import {
   ActivityIndicator
 } from "react-native";
 import _ from "lodash";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 import {Slider} from "react-native-elements";
 
 export default class Chart extends Component {
@@ -28,6 +32,7 @@ export default class Chart extends Component {
     try {
       const res = await AsyncStorage.getItem("weights");
       const response = JSON.parse(res);
+      console.log("required thing is ****", response);
 
       this.setState({
         Weights: [...response]
@@ -158,13 +163,13 @@ export default class Chart extends Component {
           <TouchableOpacity
             style={[
               styles.buttonStyle,
-              {width: 110, height: 39, marginTop: 30}
+              {width: wp("30.5%"), height: hp("6.5%"), marginTop: 30}
             ]}
             onPress={() => this.props.press()}
           >
             <Text style={styles.buttonTextStyle}> BACK </Text>
           </TouchableOpacity>
-          <View style={[styles.rangeLabelStyle, {top: 68}]}>
+          <View style={[styles.rangeLabelStyle, {top: hp("10.99%")}]}>
             <Text>87.6</Text>
             <Text>89.0</Text>
           </View>
@@ -226,10 +231,10 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: "#00B0FF",
     borderRadius: 5,
-    width: 340,
+    width: wp("94%"),
     alignItems: "center",
     justifyContent: "center",
-    height: 64,
+    height: hp("11%"),
     marginTop: 2
   },
   buttonTextStyle: {
@@ -245,41 +250,41 @@ const styles = StyleSheet.create({
     marginRight: 39,
     marginTop: 25,
     backgroundColor: "#FFFFFF",
-    height: 220,
+    height: hp("36.3%"),
     paddingTop: 5
   },
   barStyle: {
     flexDirection: "row",
     marginBottom: 15,
-    height: 22
+    height: hp("3.53%")
   },
   dropDownStyle: {
-    height: 64,
-    width: 350,
+    height: hp("11%"),
+    width: wp("97.3%"),
     borderColor: "#00B0FF",
     borderWidth: 1,
     borderRadius: 5,
     marginTop: 10
   },
   dropDownPickerStyle: {
-    height: 64,
-    width: 300,
+    height: hp("11%"),
+    width: wp("83.4%"),
     marginLeft: 10,
     color: "rgba(0, 0, 0, 0.26)"
   },
   arrowIconStyle: {
     position: "absolute",
-    left: "82.4%",
-    right: "8.53%",
-    top: "39.06%",
-    bottom: "37.5%"
+    left: wp("79.4%"),
+    right: wp("9.53%"),
+    top: hp("4.06%"),
+    bottom: hp("10.5%")
   },
   rangeLabelStyle: {
-    top: 310,
+    top: hp("51.5%"),
     position: "absolute",
     flexDirection: "row",
-    width: 230,
-    height: 16,
+    width: wp("64%"),
+    height: hp("2.55%"),
     marginLeft: 120,
     justifyContent: "space-between"
   }

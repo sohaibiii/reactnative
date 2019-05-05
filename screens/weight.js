@@ -3,19 +3,18 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableHighlight,
   TouchableOpacity,
-  Image,
-  TextInput,
   StyleSheet,
-  Dimensions,
   AsyncStorage,
   ActivityIndicator
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 import {addWeightValue} from "../helpers/index";
 import moment from "moment";
 import Target from "./target";
-const width = Dimensions.get("window").width;
 
 class Weight extends Component {
   state = {
@@ -30,6 +29,7 @@ class Weight extends Component {
     try {
       const res = await AsyncStorage.getItem("weights");
       const response = JSON.parse(res);
+      console.log("required thing is ****", response);
 
       this.setState({
         Weights: [...response]
@@ -50,7 +50,12 @@ class Weight extends Component {
         <TouchableOpacity
           style={[
             styles.buttonStyle,
-            {width: 110, height: 39, marginTop: 25, marginBottom: 15}
+            {
+              width: wp("30.5%"),
+              height: hp("6.5%"),
+              marginTop: 25,
+              marginBottom: 13
+            }
           ]}
           onPress={() => this.props.press(1)}
         >
@@ -86,7 +91,7 @@ class Weight extends Component {
         </View>
 
         <TouchableOpacity
-          style={[styles.buttonStyle, {marginTop: 25}]}
+          style={[styles.buttonStyle, {marginTop: 15}]}
           onPress={() => this.props.press(3)}
         >
           <Text style={styles.buttonTextStyle}> CHART </Text>
@@ -108,10 +113,10 @@ const styles = StyleSheet.create({
   buttonStyle: {
     backgroundColor: "#00B0FF",
     borderRadius: 5,
-    width: 340,
+    width: wp("94%"),
     alignItems: "center",
     justifyContent: "center",
-    height: 64,
+    height: hp("11%"),
     marginTop: 2
   },
   buttonTextStyle: {
@@ -131,15 +136,10 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: "#F44336"
   },
-  imageStyle: {
-    position: "absolute",
-    left: "96.71%",
-    top: "26%"
-  },
 
   frameStyle: {
-    height: 250,
-    marginTop: 20,
+    height: hp("45.64%"),
+    marginTop: 15,
     marginLeft: 20,
     marginRight: 20,
     alignItems: "center",
@@ -147,15 +147,15 @@ const styles = StyleSheet.create({
   },
 
   historyStyle: {
-    width: width - 20,
-    height: 28,
+    width: wp("94.5%"),
+    height: hp("4.4%"),
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between"
   },
   linkOneStyle: {
-    width: 167,
-    height: 20,
+    width: wp("46.4%"),
+    height: hp("3.2%"),
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
     color: "rgba(0, 0, 0, 0.5)"
   },
   linkTwoStyle: {
-    width: 81,
-    height: 20,
+    width: wp("22.53%"),
+    height: hp("3.2%"),
     fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "normal",

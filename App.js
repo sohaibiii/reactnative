@@ -6,7 +6,7 @@ import Chart from "./screens/chart";
 
 export default class App extends React.Component {
   state = {
-    screen: 1
+    screen: 3
   };
   renderComponents = () => {
     switch (this.state.screen) {

@@ -6,7 +6,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image
+  Image,
+  Dimensions
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -19,6 +20,9 @@ import {
   addWeightValue,
   removeZeroDecimal
 } from "../helpers/index";
+const width = Dimensions.get("screen").width;
+const height = Dimensions.get("screen").height;
+console.log(width);
 
 class FromItem extends React.PureComponent {
   static propTypes = {
@@ -47,7 +51,7 @@ class FromItem extends React.PureComponent {
     return (
       <View>
         <TextInput
-          style={[styles.inputStyle, {height: 64}]}
+          style={[styles.inputStyle, {height: hp("11%")}]}
           value={value || ""}
           placeholder={this.props.weight ? "weight" : "target"}
           duration={150}
@@ -125,15 +129,15 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderRadius: 5,
     padding: 20,
-    width: 340
+    width: wp("94%")
   },
   buttonStyle: {
     backgroundColor: "#00B0FF",
     borderRadius: 5,
-    width: 340,
+    width: wp("94%"),
     alignItems: "center",
     justifyContent: "center",
-    height: 64,
+    height: hp("11%"),
     marginTop: 2
   },
   buttonTextStyle: {
@@ -155,7 +159,7 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     position: "absolute",
-    left: "88.71%",
-    top: "4.3%"
+    left: wp("88.71%"),
+    top: hp("0.01%")
   }
 });
