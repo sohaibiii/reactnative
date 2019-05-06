@@ -75,7 +75,7 @@ class Weight extends Component {
   };
   render() {
     return (
-      <View style={{padding: 10}}>
+      <View style={{margin: 10, flex: 1}}>
         <TouchableOpacity
           style={[
             styles.buttonStyle,
@@ -102,7 +102,7 @@ class Weight extends Component {
         </View>
 
         <TouchableOpacity
-          style={[styles.buttonStyle, {marginTop: 15}]}
+          style={[styles.buttonStyle, {marginTop: "auto"}]}
           onPress={() => this.props.press(3)}
         >
           <Text style={styles.buttonTextStyle}> CHART </Text>

@@ -46,7 +46,7 @@ export default class Chart extends Component {
 
   dropDownOne = () => {
     return (
-      <View style={styles.dropDownStyle}>
+      <View style={[styles.dropDownStyle, {marginBottom: 10, marginTop: 10}]}>
         <Picker
           selectedValue={this.state.language}
           style={styles.dropDownPickerStyle}
@@ -88,7 +88,7 @@ export default class Chart extends Component {
   };
 
   graphLogic = () => {
-    // finding weights records
+    // finding weight records
     const {Weights} = this.state;
 
     // separating each day from another day
@@ -122,6 +122,7 @@ export default class Chart extends Component {
     const chartMin = 87.6;
     const chartMax = 89;
     const divider = 1.4;
+    console.log("min and max values are", min, max);
 
     const leftMargin = (Math.abs(min - chartMin) / divider) * 100;
 
@@ -176,7 +177,7 @@ export default class Chart extends Component {
       );
     } else {
       return (
-        <View style={{marginLeft: 5, marginRight: 5}}>
+        <View style={{flex: 1, margin: 10}}>
           <TouchableOpacity
             style={[
               styles.buttonStyle,
@@ -186,7 +187,8 @@ export default class Chart extends Component {
           >
             <Text style={styles.buttonTextStyle}> BACK </Text>
           </TouchableOpacity>
-          <View style={[styles.rangeLabelStyle, {top: hp("10.99%")}]}>
+
+          <View style={[styles.rangeLabelStyle]}>
             <Text>87.6</Text>
             <Text>89.0</Text>
           </View>
@@ -201,7 +203,7 @@ export default class Chart extends Component {
           </View>
 
           <Slider
-            style={{marginTop: 16}}
+            style={{marginBottom: 25}}
             minimumValue={0}
             maximumValue={1}
             minimumTrackTintColor="#00B0FF"
@@ -211,29 +213,38 @@ export default class Chart extends Component {
             onSlidingComplete={() => alert("slider clicked")}
             thumbTintColor="#00B0FF"
           />
-          <Text style={{textAlign: "center"}}>Range</Text>
-          <View style={{flexDirection: "row"}}>
-            <Text>2019-04-24</Text>
-            <Text style={{marginLeft: 10}}>88.2</Text>
-            <Text style={{marginLeft: 42}}>2019-04-28</Text>
-            <Text style={{marginLeft: 10}}>87.0</Text>
-            <Text style={{marginLeft: 65}}>-1.2</Text>
-          </View>
+          <View
+            style={{
+              marginBottom: 32,
+              marginTop: "auto"
+            }}
+          >
+            <Text style={{textAlign: "center"}}>Range</Text>
+            <View style={{flexDirection: "row"}}>
+              <Text>2019-04-24</Text>
+              <Text style={{marginLeft: 10}}>88.2</Text>
+              <Text style={{marginLeft: 42}}>2019-04-28</Text>
+              <Text style={{marginLeft: 10}}>87.0</Text>
+              <Text style={{marginLeft: "auto"}}>-1.2</Text>
+            </View>
 
-          <View style={{flexDirection: "row"}}>
-            <Text style={{marginLeft: 70}}>Min</Text>
-            <Text style={{marginLeft: 150}}>Max</Text>
+            <View style={{flexDirection: "row"}}>
+              <Text style={{marginLeft: 70}}>Min</Text>
+              <Text style={{marginLeft: 150}}>Max</Text>
+            </View>
+            <View style={{flexDirection: "row"}}>
+              <Text style={{marginLeft: 30}}>88.2</Text>
+              <Text style={{marginLeft: 30}}>87.0</Text>
+              <Text style={{marginLeft: 30}}>-1.2</Text>
+              <Text style={{marginLeft: 30}}>88.2</Text>
+              <Text style={{marginLeft: 30}}>87.0</Text>
+              <Text style={{marginLeft: "auto"}}>-1.2</Text>
+            </View>
           </View>
-          <View style={{flexDirection: "row"}}>
-            <Text style={{marginLeft: 30}}>88.2</Text>
-            <Text style={{marginLeft: 30}}>87.0</Text>
-            <Text style={{marginLeft: 30}}>-1.2</Text>
-            <Text style={{marginLeft: 30}}>88.2</Text>
-            <Text style={{marginLeft: 30}}>87.0</Text>
-            <Text style={{marginLeft: 42}}>-1.2</Text>
+          <View style={{marginTop: "auto"}}>
+            {this.dropDownOne()}
+            {this.dropDownTwo()}
           </View>
-          {this.dropDownOne()}
-          {this.dropDownTwo()}
         </View>
       );
     }
@@ -265,7 +276,7 @@ const styles = StyleSheet.create({
   frameStyle: {
     marginLeft: 39,
     marginRight: 39,
-    marginTop: 25,
+    marginTop: 10,
     backgroundColor: "#FFFFFF",
     height: hp("36.3%"),
     paddingTop: 5
@@ -277,32 +288,29 @@ const styles = StyleSheet.create({
   },
   dropDownStyle: {
     height: hp("11%"),
-    width: wp("97.3%"),
+    width: wp("94%"),
     borderColor: "#00B0FF",
     borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 10
+    borderRadius: 5
   },
   dropDownPickerStyle: {
     height: hp("11%"),
-    width: wp("83.4%"),
+    width: wp("78%"),
     marginLeft: 10,
     color: "rgba(0, 0, 0, 0.26)"
   },
   arrowIconStyle: {
     position: "absolute",
-    left: wp("79.4%"),
+    left: wp("73.4%"),
     right: wp("9.53%"),
-    top: hp("4.06%"),
+    top: hp("4.56%"),
     bottom: hp("10.5%")
   },
   rangeLabelStyle: {
-    top: hp("51.5%"),
-    position: "absolute",
     flexDirection: "row",
     width: wp("64%"),
     height: hp("2.55%"),
-    marginLeft: 120,
+    marginLeft: "auto",
     justifyContent: "space-between"
   }
 });
