@@ -72,8 +72,12 @@ class Target extends React.Component {
       if (error) return;
       else {
         const num = removeZeroDecimal(String(value.number));
-        this.props.weight ? addWeightValue(num) : addTargetValue(num);
-        this.props.weight ? this.props.renderWeights() : "";
+        this.props.weight
+          ? addWeightValue(num).then(() =>
+              this.props.weight ? this.props.renderWeights() : ""
+            )
+          : addTargetValue(num);
+
         this.props.weight ? "" : this.props.press();
       }
     });
