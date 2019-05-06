@@ -82,20 +82,21 @@ class Weight extends Component {
             {
               width: wp("30.5%"),
               height: hp("6.5%"),
-              marginTop: 25,
-              marginBottom: 13
+              marginTop: "auto",
+              marginBottom: 10
             }
           ]}
           onPress={() => this.props.press(1)}
         >
           <Text style={styles.buttonTextStyle}> BACK </Text>
         </TouchableOpacity>
-
-        <Target
-          weight={true}
-          style={{marginTop: 10}}
-          renderWeights={() => this.renderWeights()}
-        />
+        <View style={{marginTop: "auto"}}>
+          <Target
+            weight={true}
+            style={{marginTop: 10}}
+            renderWeights={() => this.renderWeights()}
+          />
+        </View>
 
         <View style={styles.frameStyle}>
           <ScrollView>{this.renderHistory()}</ScrollView>
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
 
   frameStyle: {
     height: hp("45.64%"),
-    marginTop: 15,
+    marginTop: "auto",
     marginLeft: 20,
     marginRight: 20,
     alignItems: "center",

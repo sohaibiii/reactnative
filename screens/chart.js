@@ -181,7 +181,7 @@ export default class Chart extends Component {
           <TouchableOpacity
             style={[
               styles.buttonStyle,
-              {width: wp("30.5%"), height: hp("6.5%"), marginTop: 30}
+              {width: wp("30.5%"), height: hp("6.5%"), marginTop: "auto"}
             ]}
             onPress={() => this.props.press()}
           >
@@ -191,7 +191,7 @@ export default class Chart extends Component {
             <Text>87.6</Text>
             <Text>89.0</Text>
           </View>
-          <View style={styles.frameStyle}>
+          <View style={[styles.frameStyle, {marginTop: "auto"}]}>
             <ScrollView>{this.graphLogic()}</ScrollView>
           </View>
           <View style={styles.rangeLabelStyle}>
@@ -199,7 +199,9 @@ export default class Chart extends Component {
             <Text>89.0</Text>
           </View>
           <Slider
-            style={{marginBottom: 25}}
+            style={{
+              marginTop: "auto"
+            }}
             minimumValue={0}
             maximumValue={1}
             minimumTrackTintColor="#00B0FF"
@@ -211,8 +213,9 @@ export default class Chart extends Component {
           />
           <View
             style={{
-              marginBottom: 32,
-              marginTop: "auto"
+              marginTop: "auto",
+
+              paddingTop: 5
             }}
           >
             <Text style={{textAlign: "center"}}>Range</Text>
@@ -273,7 +276,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: "#FFFFFF",
     height: hp("36.3%"),
-    paddingTop: 5
+    paddingTop: 20
   },
   barStyle: {
     flexDirection: "row",
@@ -305,6 +308,7 @@ const styles = StyleSheet.create({
     width: wp("64%"),
     height: hp("2.55%"),
     marginLeft: "auto",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginTop: "auto"
   }
 });
