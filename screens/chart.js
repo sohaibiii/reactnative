@@ -187,21 +187,17 @@ export default class Chart extends Component {
           >
             <Text style={styles.buttonTextStyle}> BACK </Text>
           </TouchableOpacity>
-
           <View style={[styles.rangeLabelStyle]}>
             <Text>87.6</Text>
             <Text>89.0</Text>
           </View>
-
           <View style={styles.frameStyle}>
             <ScrollView>{this.graphLogic()}</ScrollView>
           </View>
-
           <View style={styles.rangeLabelStyle}>
             <Text>87.6</Text>
             <Text>89.0</Text>
           </View>
-
           <Slider
             style={{marginBottom: 25}}
             minimumValue={0}
@@ -227,7 +223,6 @@ export default class Chart extends Component {
               <Text style={{marginLeft: 10}}>87.0</Text>
               <Text style={{marginLeft: "auto"}}>-1.2</Text>
             </View>
-
             <View style={{flexDirection: "row"}}>
               <Text style={{marginLeft: 70}}>Min</Text>
               <Text style={{marginLeft: 150}}>Max</Text>
@@ -250,7 +245,6 @@ export default class Chart extends Component {
     }
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
